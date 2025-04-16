@@ -2,7 +2,7 @@
  * main_app.h
  *
  *  Created on: Apr 16, 2025
- *      Author: dineshbobburu
+ *      Author: Dinesh Bobburu
  */
 
 #ifndef INC_MAIN_APP_H_
