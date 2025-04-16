@@ -8,6 +8,8 @@
 #ifndef INC_GPIO_APP_H_
 #define INC_GPIO_APP_H_
 #include "main_app.h"
+#include "stm32f4xx_hal_gpio.h"
+#include "stm32f4xx_hal_gpio_ex.h"
 
 /*
  * Peripheral port definitions
