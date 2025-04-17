@@ -13,6 +13,11 @@
 #include "stm32f4xx_hal_uart.h"
 
 
+/*
+ * UART Initialixation with default settings
+ * */
+HAL_StatusTypeDef UART_Init_With_Handle(UART_HandleTypeDef *uart_Handle);
+
 
 
 #endif /* INC_UART_APPLICATION_HEADERS_UART_APP_H_ */
