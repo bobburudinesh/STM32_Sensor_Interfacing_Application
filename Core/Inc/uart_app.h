@@ -13,6 +13,9 @@
 #include "stm32f4xx_hal_uart.h"
 
 
+#define TRUE	1
+#define FALSE	0
+
 /*
  * UART Initialixation with default settings
  * */
