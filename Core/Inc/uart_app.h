@@ -19,7 +19,7 @@
 /*
  * UART Initialixation with default settings
  * */
-HAL_StatusTypeDef UART_Init_With_Handle(UART_HandleTypeDef *uart_Handle);
+void UART_Init_With_Handle(UART_HandleTypeDef *uart_Handle);
 
 
 
