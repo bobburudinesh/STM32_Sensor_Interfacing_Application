@@ -32,5 +32,16 @@ void GPIO_Clock_Init(GPIO_TypeDef **gpioX) {
 	 * */
 }
 
+void GPIO_UART2_Init(void) {
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	GPIO_InitTypeDef	gpio;
+	gpio.Mode = GPIO_MODE_AF_PP;
+	gpio.Pin = UART2_TX | UART2_RX;
+	gpio.Alternate = GPIO_AF7_USART2;
+	gpio.Pull = GPIO_PULLUP;
+	gpio.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(GPIOA, &gpio);
+
+}
 
 
