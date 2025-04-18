@@ -38,8 +38,6 @@ int main(void) {
 		HAL_UART_Receive_IT(&uart2_Handle, &receivedData, 1);
 	}
 
-	while(1);
-
 	return 0;
 }
 

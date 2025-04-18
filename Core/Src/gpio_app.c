@@ -17,13 +17,13 @@ void GPIO_Init(void) {
 
 void GPIO_LED_Onboard_Init(void) {
 	__HAL_RCC_GPIOD_CLK_ENABLE();
-		GPIO_InitTypeDef	*gpio_Init = {0};
-		gpio_Init->Pin = LED_ORANGE_ON_BOARD | LED_BLUE_ON_BOARD | LED_GREEN_ON_BOARD | LED_RED_ON_BOARD;
-		gpio_Init->Mode = GPIO_MODE_OUTPUT_PP;
-		gpio_Init->Pull = GPIO_NOPULL;
-		gpio_Init->Speed = GPIO_SPEED_LOW;
+		GPIO_InitTypeDef	gpio_Init;
+		gpio_Init.Pin = LED_ORANGE_ON_BOARD | LED_BLUE_ON_BOARD | LED_GREEN_ON_BOARD | LED_RED_ON_BOARD;
+		gpio_Init.Mode = GPIO_MODE_OUTPUT_PP;
+		gpio_Init.Pull = GPIO_NOPULL;
+		gpio_Init.Speed = GPIO_SPEED_LOW;
 
-		HAL_GPIO_Init(GPIOD, gpio_Init);
+		HAL_GPIO_Init(GPIOD, &gpio_Init);
 }
 
 void GPIO_Clock_Init(GPIO_TypeDef **gpioX) {
