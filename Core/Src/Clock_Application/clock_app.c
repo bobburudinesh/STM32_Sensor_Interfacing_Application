@@ -21,39 +21,30 @@ void App_Clock_Init_From_PLL(Clock_Frequency_Mhz clock_Frequency, uint32_t ahb_p
 	osc_init.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
 	osc_init.PLL.PLLSource = RCC_PLLSOURCE_HSI;
 	osc_init.PLL.PLLState = RCC_PLL_ON;
-	osc_init.PLL.PLLM = 8;  // keeping this factor 16 helps in getting VCO(voltage controlled oscillator) inout frequency between 1-2Mhz(this is strict requirement.)
-
-//	osc_init.PLL.PLLN = 50;
-//	osc_init.PLL.PLLP = 4;
-//	osc_init.PLL.PLLQ = 7;
+	osc_init.PLL.PLLM = 16;  // keeping this factor 16 helps in getting VCO(voltage controlled oscillator) inout frequency between 1-2Mhz(this is strict requirement.)
 
 	clk_init.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
 	clk_init.ClockType = RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
 
-//	osc_init.PLL.PLLN = 2*clock_Frequency;
-//	osc_init.PLL.PLLP = 2;
-//	osc_init.PLL.PLLQ = 2;
-
-
 	switch(clock_Frequency) {
 	case clock_16Mhz:
-		osc_init.PLL.PLLN = 16;
-		osc_init.PLL.PLLP = 2;
+		osc_init.PLL.PLLN = 64;
+		osc_init.PLL.PLLP = 4;
 		osc_init.PLL.PLLQ = 2;
 		clk_init.AHBCLKDivider = RCC_SYSCLK_DIV1;
 		clk_init.APB1CLKDivider = RCC_HCLK_DIV1;
 		clk_init.APB2CLKDivider = RCC_HCLK_DIV1;
 		break;
 	case clock_32Mhz:
-		osc_init.PLL.PLLN = 50;
-		osc_init.PLL.PLLP = 4;
-		osc_init.PLL.PLLQ = 7;
+		osc_init.PLL.PLLN = 64;
+		osc_init.PLL.PLLP = 2;
+		osc_init.PLL.PLLQ = 2;
 		clk_init.AHBCLKDivider = RCC_SYSCLK_DIV1;
 		clk_init.APB1CLKDivider = RCC_HCLK_DIV2;
 		clk_init.APB2CLKDivider = RCC_HCLK_DIV2;
 		break;
 	case clock_50Mhz:
-		osc_init.PLL.PLLN = 50;
+		osc_init.PLL.PLLN = 100;
 		osc_init.PLL.PLLP = 2;
 		osc_init.PLL.PLLQ = 7;
 		clk_init.AHBCLKDivider = RCC_SYSCLK_DIV1;

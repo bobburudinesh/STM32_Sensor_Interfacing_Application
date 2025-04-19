@@ -8,7 +8,6 @@
 #include "uart_app.h"
 #include "main_app.h"
 
-//UART_HandleTypeDef *uart_Handle_Console;
 extern UART_HandleTypeDef uart2_Handle;
 
 void UART_Init_With_Handle(UART_HandleTypeDef *uart_Handle) {
@@ -27,11 +26,6 @@ void UART_Init_With_Handle(UART_HandleTypeDef *uart_Handle) {
 	}
 
 }
-
-//void APP_Initialize_UART_Handle_Console(UART_HandleTypeDef *uart_Handle){
-//	uart_Handle_Console = uart_Handle;
-//}
-
 
 void APP_Print_Log_UART(char *message) {
 

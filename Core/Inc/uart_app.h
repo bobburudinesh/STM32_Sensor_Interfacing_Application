@@ -22,7 +22,6 @@
  * UART Initialixation with default settings
  * */
 void UART_Init_With_Handle(UART_HandleTypeDef *uart_Handle);
-void APP_Initialize_UART_Handle_Console(UART_HandleTypeDef *uart_Handle);
 void APP_Print_Log_UART(char *message);
 
 
