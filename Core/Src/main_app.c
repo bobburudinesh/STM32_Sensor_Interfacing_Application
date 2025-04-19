@@ -9,6 +9,7 @@
 #include <main_app.h>
 #include "gpio_app.h"
 #include "uart_app.h"
+#include "clock_app.h"
 
 
 void Error_Handler(void);
@@ -30,12 +31,17 @@ HAL_StatusTypeDef status;
 int main(void) {
 	HAL_Init();
 	SystemClock_Config();
+	App_Clock_Init_From_PLL(clock_50Mhz, 1, 1, 1);
 	GPIO_LED_Onboard_Init();
 	__HAL_RCC_USART2_CLK_ENABLE();
 	UART_Init_With_Handle(&uart2_Handle);
-	HAL_UART_Transmit(&uart2_Handle, (uint8_t*) sendMessage, (uint16_t)strlen(sendMessage), HAL_MAX_DELAY);
+	//APP_Initialize_UART_Handle_Console();
+	APP_Print_Clock_Log_UART();
+	//HAL_UART_Transmit(&uart2_Handle, (uint8_t*) sendMessage, (uint16_t)strlen(sendMessage), HAL_MAX_DELAY);
 	while(1) {
-		HAL_UART_Receive_IT(&uart2_Handle, &receivedData, 1);
+		//HAL_UART_Receive_IT(&uart2_Handle, &receivedData, 1);
+
+		HAL_GPIO_TogglePin(GPIOD, LED_GREEN_ON_BOARD);
 	}
 
 	return 0;

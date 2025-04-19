@@ -9,6 +9,8 @@
 #define INC_MAIN_APP_H_
 
 #include "stm32f4xx_hal.h"
+#include <string.h>
+#include <stdio.h>
 
 void APP_Handle_Error(HAL_StatusTypeDef status);
 

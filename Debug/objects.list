@@ -1,3 +1,4 @@
+"./Core/Src/Clock_Application/clock_app.o"
 "./Core/Src/UART_Application/uart_app.o"
 "./Core/Src/gpio_app.o"
 "./Core/Src/it_app.o"
