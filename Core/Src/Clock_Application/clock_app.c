@@ -40,8 +40,8 @@ void App_Clock_Init_From_PLL(Clock_Frequency_Mhz clock_Frequency, uint32_t ahb_p
 		osc_init.PLL.PLLP = 2;
 		osc_init.PLL.PLLQ = 2;
 		clk_init.AHBCLKDivider = RCC_SYSCLK_DIV1;
-		clk_init.APB1CLKDivider = RCC_HCLK_DIV2;
-		clk_init.APB2CLKDivider = RCC_HCLK_DIV2;
+		clk_init.APB1CLKDivider = RCC_HCLK_DIV1;
+		clk_init.APB2CLKDivider = RCC_HCLK_DIV1;
 		break;
 	case clock_50Mhz:
 		osc_init.PLL.PLLN = 100;

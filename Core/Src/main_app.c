@@ -10,7 +10,7 @@
 #include "gpio_app.h"
 #include "uart_app.h"
 #include "clock_app.h"
-
+#include "timer_app.h"
 
 void Error_Handler(void);
 void SystemClock_Config(void);
@@ -18,6 +18,10 @@ void SystemClock_Config(void);
 
 UART_HandleTypeDef	uart2_Handle = {
 		.Instance = USART2
+};
+
+TIM_HandleTypeDef tim6_handle = {
+		.Instance = TIM6,
 };
 
 char *sendMessage = "Application Running\r\n";
@@ -36,7 +40,9 @@ int main(void) {
 	__HAL_RCC_USART2_CLK_ENABLE();
 	UART_Init_With_Handle(&uart2_Handle);
 	APP_Print_Clock_Log_UART();
-	//HAL_UART_Transmit(&uart2_Handle, (uint8_t*) sendMessage, (uint16_t)strlen(sendMessage), HAL_MAX_DELAY);
+	APP_Timer6_Init(&tim6_handle);
+	HAL_TIM_Base_Start_IT(&tim6_handle);
+	HAL_UART_Transmit(&uart2_Handle, (uint8_t*) sendMessage, (uint16_t)strlen(sendMessage), HAL_MAX_DELAY);
 	while(1) {
 		//HAL_UART_Receive_IT(&uart2_Handle, &receivedData, 1);
 		HAL_GPIO_TogglePin(GPIOD, LED_GREEN_ON_BOARD);
@@ -64,4 +70,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	} else {
 		receivedCmd[receivedCmd_Count++] = receivedData;
 	}
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+	HAL_GPIO_TogglePin(GPIOD, LED_ORANGE_ON_BOARD);
 }

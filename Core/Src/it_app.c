@@ -10,6 +10,7 @@
 #include "it_app.h"
 
 extern UART_HandleTypeDef uart2_Handle;
+extern TIM_HandleTypeDef tim6_handle;
 
 void SysTick_Handler(void) {
 	HAL_IncTick();
@@ -18,4 +19,8 @@ void SysTick_Handler(void) {
 
 void USART2_IRQHandler(void) {
 	HAL_UART_IRQHandler(&uart2_Handle);
+}
+
+void TIM6_DAC_IRQHandler(void) {
+	HAL_TIM_IRQHandler(&tim6_handle);
 }
