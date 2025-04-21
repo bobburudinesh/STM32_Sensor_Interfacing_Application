@@ -11,6 +11,7 @@
 
 extern UART_HandleTypeDef uart2_Handle;
 extern TIM_HandleTypeDef tim6_handle;
+extern TIM_HandleTypeDef tim2_handle;
 
 void SysTick_Handler(void) {
 	HAL_IncTick();
@@ -23,4 +24,8 @@ void USART2_IRQHandler(void) {
 
 void TIM6_DAC_IRQHandler(void) {
 	HAL_TIM_IRQHandler(&tim6_handle);
+}
+
+void TIM2_IRQHandler(void) {
+	HAL_TIM_IRQHandler(&tim2_handle);
 }

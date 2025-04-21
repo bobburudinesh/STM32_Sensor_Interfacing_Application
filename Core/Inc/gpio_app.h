@@ -23,6 +23,7 @@
 
 #define UART2_TX	GPIO_PIN_2
 #define UART2_RX	GPIO_PIN_3
+#define TIM2_CH1	GPIO_PIN_0
 
 /*
  * GPIO Port D Pin Definitions
@@ -41,5 +42,7 @@ void GPIO_Init(void);
 void GPIO_LED_Onboard_Init(void);
 void GPIO_Clock_Init(GPIO_TypeDef **gpioX);
 
-void GPIO_UART2_Init(void);
+void GPIO_UART2_Init(void); // GPIO Config for uart2 TX and RX
+
+void APP_GPIO_TIM2_CH1_Init(void); // GPIO Config for Timer2 channel 1
 #endif /* INC_GPIO_APP_H_ */

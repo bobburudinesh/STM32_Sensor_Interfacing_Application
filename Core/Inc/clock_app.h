@@ -48,5 +48,14 @@ typedef enum {
  * */
 void App_Clock_Init_From_PLL(Clock_Frequency_Mhz clock_Frequency, uint32_t ahb_prescaler, uint32_t apb1_prescaler, uint32_t apb2_prescaler);
 void APP_Print_Clock_Log_UART(void);
+void APP_HSI_Clock_Init_On_MCO1(void); // LSE will output on MCO1(PA8)
+
+
+/*
+ * HELPER FUNCTIONS
+ * */
+uint32_t APP_CLock_GET_APB1_TIM_Freq(void);
+uint32_t APP_CLock_GET_APB2_TIM_Freq(void);
+
 
 #endif /* INC_CLOCK_APP_H_ */
