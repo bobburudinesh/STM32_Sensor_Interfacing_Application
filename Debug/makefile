@@ -12,6 +12,7 @@ RM := rm -rf
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/UART_Application/subdir.mk
+-include Core/Src/Timer_Application/subdir.mk
 -include Core/Src/Clock_Application/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk
@@ -63,7 +64,7 @@ main-build: STM32_Sensor_Interfacing_Application.elf secondary-outputs
 
 # Tool invocations
 STM32_Sensor_Interfacing_Application.elf STM32_Sensor_Interfacing_Application.map: $(OBJS) $(USER_OBJS) /Users/dineshbobburu/Documents/Embedded\ Systems/Projects/STM32/STM32_Sensor_Interfacing_Application/STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32_Sensor_Interfacing_Application.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/dineshbobburu/Documents/Embedded Systems/Projects/STM32/STM32_Sensor_Interfacing_Application/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_Sensor_Interfacing_Application.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "STM32_Sensor_Interfacing_Application.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/dineshbobburu/Documents/Embedded Systems/Projects/STM32/STM32_Sensor_Interfacing_Application/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_Sensor_Interfacing_Application.map" -Wl,--gc-sections -static -u_printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

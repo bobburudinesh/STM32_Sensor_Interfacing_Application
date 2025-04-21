@@ -45,3 +45,13 @@ void GPIO_UART2_Init(void) {
 }
 
 
+void APP_GPIO_TIM2_CH1_Init(void) {
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	GPIO_InitTypeDef	gpio_tim2;
+	gpio_tim2.Mode = GPIO_MODE_AF_PP;
+	//gpio_tim2.Pull = GPIO_PULLDOWN;
+	gpio_tim2.Alternate = GPIO_AF1_TIM1;
+	gpio_tim2.Pin = TIM2_CH1;
+	HAL_GPIO_Init(GPIOA, &gpio_tim2);
+}
+

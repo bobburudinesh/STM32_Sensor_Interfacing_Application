@@ -40,8 +40,8 @@ void App_Clock_Init_From_PLL(Clock_Frequency_Mhz clock_Frequency, uint32_t ahb_p
 		osc_init.PLL.PLLP = 2;
 		osc_init.PLL.PLLQ = 2;
 		clk_init.AHBCLKDivider = RCC_SYSCLK_DIV1;
-		clk_init.APB1CLKDivider = RCC_HCLK_DIV2;
-		clk_init.APB2CLKDivider = RCC_HCLK_DIV2;
+		clk_init.APB1CLKDivider = RCC_HCLK_DIV1;
+		clk_init.APB2CLKDivider = RCC_HCLK_DIV1;
 		break;
 	case clock_50Mhz:
 		osc_init.PLL.PLLN = 100;
@@ -105,6 +105,10 @@ void App_Clock_Init_From_PLL(Clock_Frequency_Mhz clock_Frequency, uint32_t ahb_p
 
 }
 
+void APP_HSI_Clock_Init_On_MCO1(void){
+	HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_PLLCLK, RCC_MCODIV_2);
+}
+
 void APP_Print_Clock_Log_UART(void) {
 	char print_Message[100];
 	memset(&print_Message, 0, sizeof(print_Message));
@@ -120,7 +124,30 @@ void APP_Print_Clock_Log_UART(void) {
 	APP_Print_Log_UART(print_Message);
 
 	memset(&print_Message, 0, sizeof(print_Message));
+	sprintf(print_Message, "APB1 TIM Freq: %ld\r\n",APP_CLock_GET_APB1_TIM_Freq());
+	APP_Print_Log_UART(print_Message);
+
+	memset(&print_Message, 0, sizeof(print_Message));
 	sprintf(print_Message, "PCLK2 Freq: %ld\r\n",HAL_RCC_GetPCLK2Freq());
+	APP_Print_Log_UART(print_Message);
+
+	memset(&print_Message, 0, sizeof(print_Message));
+	sprintf(print_Message, "APB2 TIM Freq: %ld\r\n",APP_CLock_GET_APB2_TIM_Freq());
 	APP_Print_Log_UART(print_Message);
 }
 
+uint32_t APP_CLock_GET_APB1_TIM_Freq(void) {
+	if((RCC->CFGR >> 10) & 0x7) {
+		return HAL_RCC_GetPCLK1Freq()*2;
+	} else {
+		return HAL_RCC_GetPCLK1Freq();
+	}
+}
+
+uint32_t APP_CLock_GET_APB2_TIM_Freq(void) {
+	if((RCC->CFGR >> 13) & 0x7) {
+		return HAL_RCC_GetPCLK2Freq()*2;
+	} else {
+		return HAL_RCC_GetPCLK2Freq();
+	}
+}
