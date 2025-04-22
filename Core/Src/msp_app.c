@@ -50,4 +50,20 @@ void HAL_TIM_IC_MspInit(TIM_HandleTypeDef *htim) {
 	HAL_NVIC_SetPriority(TIM2_IRQn, 14, 0);
 }
 
+void HAL_TIM_OC_MspInit(TIM_HandleTypeDef *htim) {
+	__HAL_RCC_TIM2_CLK_ENABLE();
+
+	APP_GPIO_TIM2_OC_CH1_To_4_Init();
+	HAL_NVIC_EnableIRQ(TIM2_IRQn);
+	HAL_NVIC_SetPriority(TIM2_IRQn, 14, 0);
+}
+
+void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim) {
+	__HAL_RCC_TIM2_CLK_ENABLE();
+
+	APP_GPIO_TIM2_PWM_CH1_To_4_Init();
+	HAL_NVIC_EnableIRQ(TIM2_IRQn);
+	HAL_NVIC_SetPriority(TIM2_IRQn, 14, 0);
+}
+
 

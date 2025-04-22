@@ -106,7 +106,7 @@ void App_Clock_Init_From_PLL(Clock_Frequency_Mhz clock_Frequency, uint32_t ahb_p
 }
 
 void APP_HSI_Clock_Init_On_MCO1(void){
-	HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_PLLCLK, RCC_MCODIV_2);
+	HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_HSI, RCC_MCODIV_4);
 }
 
 void APP_Print_Clock_Log_UART(void) {
