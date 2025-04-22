@@ -46,12 +46,56 @@ void GPIO_UART2_Init(void) {
 
 
 void APP_GPIO_TIM2_CH1_Init(void) {
+	/*
+	* CH1 -> PA0
+	*/
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 	GPIO_InitTypeDef	gpio_tim2;
 	gpio_tim2.Mode = GPIO_MODE_AF_PP;
 	//gpio_tim2.Pull = GPIO_PULLDOWN;
-	gpio_tim2.Alternate = GPIO_AF1_TIM1;
+	gpio_tim2.Alternate = GPIO_AF1_TIM2;
 	gpio_tim2.Pin = TIM2_CH1;
 	HAL_GPIO_Init(GPIOA, &gpio_tim2);
 }
 
+void APP_GPIO_TIM2_OC_CH1_To_4_Init(void) {
+	/*
+	 * CH1 -> PA0
+	 * CH2 -> PA1
+	 * CH3 -> PB10
+	 * CH4 -> PB11
+	 * */
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOB_CLK_ENABLE();
+	GPIO_InitTypeDef	gpio_tim2;
+	gpio_tim2.Mode = GPIO_MODE_AF_PP;
+	gpio_tim2.Pull = GPIO_NOPULL;
+	gpio_tim2.Alternate = GPIO_AF1_TIM2;
+	gpio_tim2.Speed = GPIO_SPEED_FREQ_LOW;
+	gpio_tim2.Pin = TIM2_CH1 | TIM2_CH2;
+	HAL_GPIO_Init(GPIOA, &gpio_tim2);
+
+	gpio_tim2.Pin = TIM2_CH3 | TIM2_CH4;
+	HAL_GPIO_Init(GPIOB, &gpio_tim2);
+}
+
+void APP_GPIO_TIM2_PWM_CH1_To_4_Init(void) {
+	/*
+	 * CH1 -> PA0
+	 * CH2 -> PA1
+	 * CH3 -> PB10
+	 * CH4 -> PB11
+	 * */
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOB_CLK_ENABLE();
+	GPIO_InitTypeDef	gpio_tim2;
+	gpio_tim2.Mode = GPIO_MODE_AF_PP;
+	gpio_tim2.Pull = GPIO_PULLDOWN;
+	gpio_tim2.Alternate = GPIO_AF1_TIM2;
+	gpio_tim2.Speed = GPIO_SPEED_FREQ_LOW;
+	gpio_tim2.Pin = TIM2_CH1 | TIM2_CH2;
+	HAL_GPIO_Init(GPIOA, &gpio_tim2);
+
+	gpio_tim2.Pin = TIM2_CH3 | TIM2_CH4;
+	HAL_GPIO_Init(GPIOB, &gpio_tim2);
+}

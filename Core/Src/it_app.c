@@ -8,6 +8,7 @@
 
 #include "main_app.h"
 #include "it_app.h"
+#include "gpio_app.h"
 
 extern UART_HandleTypeDef uart2_Handle;
 extern TIM_HandleTypeDef tim6_handle;
@@ -23,9 +24,16 @@ void USART2_IRQHandler(void) {
 }
 
 void TIM6_DAC_IRQHandler(void) {
+	//HAL_GPIO_WritePin(GPIOD, LED_BLUE_ON_BOARD, 0);
+	HAL_GPIO_TogglePin(GPIOD, LED_BLUE_ON_BOARD);
 	HAL_TIM_IRQHandler(&tim6_handle);
+	//HAL_GPIO_WritePin(GPIOD, LED_BLUE_ON_BOARD, 1);
 }
 
 void TIM2_IRQHandler(void) {
+
 	HAL_TIM_IRQHandler(&tim2_handle);
+
 }
+
+
