@@ -13,6 +13,7 @@ RM := rm -rf
 -include Core/Startup/subdir.mk
 -include Core/Src/UART_Application/subdir.mk
 -include Core/Src/Timer_Application/subdir.mk
+-include Core/Src/RTC_Application/subdir.mk
 -include Core/Src/Clock_Application/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk

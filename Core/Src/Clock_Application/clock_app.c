@@ -151,3 +151,25 @@ uint32_t APP_CLock_GET_APB2_TIM_Freq(void) {
 		return HAL_RCC_GetPCLK2Freq();
 	}
 }
+
+
+void APP_RTC_Clock_Init(void) {
+	HAL_StatusTypeDef status;
+	// 1. We configure the Oscillator for RTC
+	RCC_OscInitTypeDef	osc_RTC_Init = {0};
+	osc_RTC_Init.OscillatorType = RCC_OSCILLATORTYPE_LSI;
+	osc_RTC_Init.LSIState = RCC_LSI_ON;
+	osc_RTC_Init.PLL.PLLState = RCC_PLL_NONE;
+	if((status = HAL_RCC_OscConfig(&osc_RTC_Init)) != HAL_OK) {
+		APP_Handle_Error(status);
+	}
+	//2. We selected the RTC clock as LSI
+	RCC_PeriphCLKInitTypeDef	rtc_Clk_Init = {0};
+	rtc_Clk_Init.PeriphClockSelection = RCC_PERIPHCLK_RTC;
+	rtc_Clk_Init.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
+	if((status = HAL_RCCEx_PeriphCLKConfig(&rtc_Clk_Init)) != HAL_OK) {
+			APP_Handle_Error(status);
+		}
+	//3. We turned on that selected clock above.
+	__HAL_RCC_RTC_ENABLE();
+}

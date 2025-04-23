@@ -66,4 +66,13 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim) {
 	HAL_NVIC_SetPriority(TIM2_IRQn, 14, 0);
 }
 
+void HAL_RTC_MspInit(RTC_HandleTypeDef *hrtc) {
+
+
+	HAL_NVIC_EnableIRQ(RTC_Alarm_IRQn);
+	HAL_NVIC_SetPriority(RTC_Alarm_IRQn, 14, 0);
+//	HAL_NVIC_EnableIRQ(RTC_WKUP_IRQn);
+//	HAL_NVIC_SetPriority(RTC_WKUP_IRQn, 14, 0);
+}
+
 

@@ -13,6 +13,7 @@
 extern UART_HandleTypeDef uart2_Handle;
 extern TIM_HandleTypeDef tim6_handle;
 extern TIM_HandleTypeDef tim2_handle;
+extern RTC_HandleTypeDef rtc_handle;
 
 void SysTick_Handler(void) {
 	HAL_IncTick();
@@ -36,4 +37,7 @@ void TIM2_IRQHandler(void) {
 
 }
 
+void RTC_WKUP_IRQHandler(void) {
+
+}
 

@@ -33,6 +33,9 @@ TIM_HandleTypeDef tim2_handle = {
 		.Instance = TIM2,
 };
 
+RTC_HandleTypeDef rtc_handle = {
+		.Instance = RTC,
+};
 
 
 char *sendMessage = "Application Running\r\n";
@@ -87,21 +90,27 @@ int main(void) {
 	// Code Start for Clock generation from 4 output channels of Timer 2, of frequency 500Hz, 1KHz, 2KHz, 4KHz
 
 	// Code Start for PWM generation from 4 output channels of Timer 2, of 25%, 45%, 75%, 95%
-	APP_Timer2_PWM_Init(&tim2_handle);
-	if((status = HAL_TIM_PWM_Start(&tim2_handle, TIM_CHANNEL_1)) != HAL_OK) {
-		APP_Handle_Error(status);
-	}
-	if((status = HAL_TIM_PWM_Start(&tim2_handle, TIM_CHANNEL_2)) != HAL_OK) {
-		APP_Handle_Error(status);
-	}
-	if((status = HAL_TIM_PWM_Start(&tim2_handle, TIM_CHANNEL_3)) != HAL_OK) {
-		APP_Handle_Error(status);
-	}
-	if((status = HAL_TIM_PWM_Start(&tim2_handle, TIM_CHANNEL_4)) != HAL_OK) {
-		APP_Handle_Error(status);
-	}
+//	APP_Timer2_PWM_Init(&tim2_handle);
+//	if((status = HAL_TIM_PWM_Start(&tim2_handle, TIM_CHANNEL_1)) != HAL_OK) {
+//		APP_Handle_Error(status);
+//	}
+//	if((status = HAL_TIM_PWM_Start(&tim2_handle, TIM_CHANNEL_2)) != HAL_OK) {
+//		APP_Handle_Error(status);
+//	}
+//	if((status = HAL_TIM_PWM_Start(&tim2_handle, TIM_CHANNEL_3)) != HAL_OK) {
+//		APP_Handle_Error(status);
+//	}
+//	if((status = HAL_TIM_PWM_Start(&tim2_handle, TIM_CHANNEL_4)) != HAL_OK) {
+//		APP_Handle_Error(status);
+//	}
 	// Code End for PWM generation from 4 output channels of Timer 2, of 25%, 45%, 75%, 95%
 
+
+	// Code Start for RTC Exercise
+	APP_RTC_Init(&rtc_handle);
+
+
+    // Code End for RTC Exercise
 
 	HAL_UART_Transmit(&uart2_Handle, (uint8_t*) sendMessage, (uint16_t)strlen(sendMessage), HAL_MAX_DELAY);
 	while(1) {
